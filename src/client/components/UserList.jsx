@@ -90,7 +90,7 @@ function UserList() {
             <h2 style={styles.header}>User List</h2>
             <input
                 type="text"
-                placeholder="Search by username or name"
+                placeholder="Search by username or name "
                 value={searchQuery}
                 onChange={handleSearchInputChange}
                 style={styles.searchInput}
