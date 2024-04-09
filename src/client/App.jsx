@@ -14,6 +14,7 @@ function App() {
             <Route exact path="/" element={<UserList />} />
             <Route path="/users/:id/posts" element={<UserPosts />} />
             <Route path="/users/:id/albums" element={<UserAlbums />} />
+            <Route path="*" element={<div>404</div>} />
         </Routes>
 
     );

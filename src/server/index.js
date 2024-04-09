@@ -11,6 +11,11 @@ const app = express();
 // Переконайтеся, що шлях до статичних файлів відповідає вашій структурі каталогів
 app.use(express.static(path.resolve(__dirname, 'public')));
 
+app.use((req, res, next) => {
+    console.log(`${new Date().toISOString()} - ${req.method} Request to ${req.url}`);
+    next();
+});
+
 app.get('*', (req, res) => {
     const context = {}; // Context для StaticRouter
     const appMarkup = ReactDOMServer.renderToString(

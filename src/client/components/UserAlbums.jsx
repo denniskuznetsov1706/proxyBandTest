@@ -15,6 +15,12 @@ function UserAlbums() {
             })
             .catch(error => console.error("There was an error fetching the albums", error));
     }, [id]);
+    useEffect(() => {
+        console.log('id->')
+
+    }, [])
+
+    console.log('hgerak', id)
 
     return (
         <div>
