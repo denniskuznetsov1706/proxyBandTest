@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+import { Helmet } from "react-helmet";
 function UserList() {
     const [users, setUsers] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
@@ -87,6 +87,10 @@ function UserList() {
 
     return (
         <div style={styles.container}>
+            <Helmet>
+                <title>Information about users</title>
+                <meta name="description" content={`Information about users`} />
+            </Helmet>
             <h2 style={styles.header}>User List</h2>
             <input
                 type="text"

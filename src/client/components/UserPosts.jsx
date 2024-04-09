@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import { useNavigate, useParams } from 'react-router-dom';
-
+import { Helmet } from "react-helmet";
 
 function UserPosts() {
     const [posts, setPosts] = useState([]);
@@ -72,6 +72,10 @@ function UserPosts() {
 
     return (
         <div style={styles.container}>
+            <Helmet>
+                <title>{`Information about user's post ${user.name}`}</title>
+                <meta name="description" content={`Information about user's post ${user.name}`} />
+            </Helmet>
             <h2 style={styles.header}>User Posts</h2>
             <button style={styles.backButton} onClick={handleBackClick}>Back to Main Page</button>
             <h3>User Information:</h3>

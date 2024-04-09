@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import Album from './Album';
-
+import { Helmet } from "react-helmet";
 function UserAlbums() {
     const [albums, setAlbums] = useState([]);
     const { id } = useParams();
@@ -36,6 +36,10 @@ function UserAlbums() {
 
     return (
         <div>
+            <Helmet>
+                <title>Information about users Albums</title>
+                <meta name="description" content={`Information about users Albums`} />
+            </Helmet>
             <h2>User Albums</h2>
             <button style={styles.backButton} onClick={handleBackClick}>Back to Main Page</button>
             <ul>

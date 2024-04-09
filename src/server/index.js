@@ -4,16 +4,13 @@ import path from 'path';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
+import { Helmet } from 'react-helmet';
 import App from '../client/App';
 
 const app = express();
 
 app.use(express.static(path.resolve(__dirname, 'public')));
 
-app.use((req, res, next) => {
-    console.log(`${new Date().toISOString()} - ${req.method} Request to ${req.url}`);
-    next();
-});
 
 app.get('*', (req, res) => {
     const context = {};
@@ -22,6 +19,9 @@ app.get('*', (req, res) => {
             <App />
         </StaticRouter>
     );
+
+    const helmet = Helmet.renderStatic();
+
     const indexFile = path.resolve(__dirname, 'public/index.html');
     console.log(indexFile);
     fs.readFile(indexFile, 'utf8', (err, data) => {
@@ -29,8 +29,11 @@ app.get('*', (req, res) => {
             console.error('Something went wrong:', err);
             return res.status(500).send('Something went wrong!');
         }
+        const html = data
+            .replace('<title></title>', helmet.title.toString() + helmet.meta.toString())
+            .replace('<div id="app"></div>', `<div id="app">${appMarkup}</div>`);
 
-        return res.send(data.replace('<div id="app"></div>', `<div id="app">${appMarkup}</div>`));
+        return res.send(html);
     });
 });
 
