@@ -1,7 +1,22 @@
 import React from 'react';
+import { Router, Route, Routes } from 'react-router-dom';
+import UserList from './components/UserList';
+import UserPosts from './components/UserPosts';
+import UserAlbums from './components/UserAlbums';
+
+// import UserPosts from './components/UserPosts';
+// import UserAlbums from './components/UserAlbums';
 
 function App() {
-    return <div>Hello from React jsx</div>;
+    return (
+
+        <Routes>
+            <Route exact path="/" element={<UserList />} />
+            <Route path="/users/:id/posts" element={<UserPosts />} />
+            <Route path="/users/:id/albums" element={<UserAlbums />} />
+        </Routes>
+
+    );
 }
 
 export default App;
