@@ -13,16 +13,40 @@ function Album({ albumId, title }) {
     }, [albumId]);
 
     return (
-        <div>
+        <div style={styles.albumContainer}>
             <h3>{title}</h3>
-            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+            <div style={styles.photoContainer}>
                 {photos.map(photo => (
-                    <div key={photo.id} style={{ margin: '10px' }}>
-                        <img src={photo.thumbnailUrl} alt={photo.title} style={{ display: 'block', width: '150px' }} />
+                    <div key={photo.id} style={styles.photoItem}>
+                        <img src={photo.thumbnailUrl} alt={photo.title} style={styles.photo} />
                     </div>
                 ))}
             </div>
         </div>
     );
 }
+
+const styles = {
+    albumContainer: {
+        marginBottom: '20px',
+    },
+    photoContainer: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    photoItem: {
+        margin: '10px',
+    },
+    photo: {
+        display: 'block',
+        width: '150px',
+    },
+    viewAllLink: {
+        display: 'block',
+        marginTop: '10px',
+        color: '#007bff',
+        textDecoration: 'none',
+    },
+};
+
 export default Album;
